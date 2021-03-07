@@ -1,0 +1,210 @@
+---
+##                       ._____.   .__
+##  _____    ____   _____|__\_ |__ |  |   ____             ____ _____    ______
+##  \__  \  /    \ /  ___/  || __ \|  | _/ __ \   ______  /    \\__  \  /  ___/
+##   / __ \|   |  \\___ \|  || \_\ \  |_\  ___/  /_____/ |   |  \/ __ \_\___ \
+##  (____  /___|  /____  >__||___  /____/\___  >         |___|  (____  /____  >
+##       \/     \/     \/        \/          \/               \/     \/     \/
+##     a n s i b l e - n a s      https://github.com/davestephens/ansible-nas
+
+# Add your all.yml config overrides to this file. See group_vars/all.yml for all possible settings.
+
+# Example options
+ansible_nas_hostname: plex-nas
+ansible_nas_timezone: America/Denver
+
+## Enable some applications
+# 1G
+gitea_enabled: true
+# 1G
+heimdall_enabled: true
+# 1G
+nextcloud_enabled: true
+# 1G
+nzbget_enabled: true
+# 2G
+plex_enabled: true
+# 1G
+portainer_enabled: true
+# 3.2G
+stats_enabled: true
+# 1G
+syncthing_enabled: true
+# 1G
+traefik_enabled: true
+# 1G
+watchtower_enabled: true
+# 1G
+youtubedlmaterial_enabled: true
+
+# Advanced Settings
+nextcloud_available_externally: "true"
+plex_available_externally: "true"
+gitea_available_externally: "true"
+heimdall_available_externally: "true"
+
+
+ansible_nas_user: ryanj
+ansible_nas_email: ryan.jones@jonesclanonline.com
+ansible_nas_domain: jonesclanonline.com
+samba_server_string: "Plex NAS"
+
+# edit on machine
+openvpn_username: username
+openvpn_password: secret
+openvpn_provider: PrivadoVPN
+openvpn_config: "{{ openvpn_config_directory }}/lax-009.ovpn"
+
+# root paths
+samba_shares_root: /nas/data
+# /nas/data/movies
+# /nas/data/downloads
+# /nas/data/downloads/youtube/audio
+# /nas/data/downloads/youtube/video
+# /nas/data/downloads/youtube/subscriptions
+# /nas/data/tv
+# /nas/data/torrents
+# /nas/data/nzbget
+# /nas/data/music
+# /nas/data/podcasts
+# /nas/data/books
+# /nas/data/audiobooks
+# /nas/data/comics
+# /nas/data/photos
+# /nas/data/roms
+# /nas/data/dump
+# /nas/data/games
+# /nas/data/pdf
+# /nas/data/misc
+nfs_shares_root: /nas/nfs
+docker_home: /nas/docker
+# /nas/docker
+# /nas/docker/youtubedlmaterial
+# /nas/docker/organizr
+# /nas/docker/openvpn
+# /nas/docker/telegraf
+# /nas/docker/influxdb
+# /nas/docker/grafana
+# /nas/docker/openhab
+# /nas/docker/virtual-desktop
+# /nas/docker/nzbget
+# /nas/docker/nextcloud
+nzbget_download_directory: "{{ samba_shares_root }}/nzbget"
+
+
+
+# Shares you want published over Samba.
+samba_shares:
+  - name: downloads
+    comment: 'Stuff downloaded'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ downloads_root }}"
+
+  - name: movies
+    comment: 'Movies'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ movies_root }}"
+
+  - name: tv
+    comment: 'TV Episodes'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ tv_root }}"
+
+  - name: music
+    comment: 'Music'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ music_root }}"
+
+  - name: podcasts
+    comment: 'Podcasts'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ podcasts_root }}"
+
+  - name: dump
+    comment: 'File dump'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ samba_shares_root }}/dump"
+
+  - name: games
+    comment: 'Games'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ samba_shares_root }}/games"
+
+  - name: photos
+    comment: 'Pictures'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ photos_root }}"
+
+  - name: books
+    comment: 'Books'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ books_root }}"
+
+  - name: audiobooks
+    comment: 'Audiobooks'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browsable: yes
+    path: "{{ samba_shares_root }}/audiobooks"
+
+  - name: comics
+    comment: 'Comics'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ comics_root }}"
+
+  - name: roms
+    comment: 'Roms'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ samba_shares_root }}/roms"
+
+
+# username / passwords
+nextcloud_sql_user: "nextcloud-user"
+nextcloud_sql_password: "nextcloud-pass"
+nextcloud_sql_root_password: "nextcloud-secret"
+
+
+###
+### Virtual Desktop
+###
+vd_data_directory: "{{ docker_home }}/virtual_desktop"
+vd_docker_image: "rattydave/docker-ubuntu-xrdp-mate-custom:20.04-tools"
+vd_users:
+  - username: "{{ ansible_nas_user }}"
+    password: "l3tme1n"
+    sudo: "Y"
+vd_rdp_port: 3389
