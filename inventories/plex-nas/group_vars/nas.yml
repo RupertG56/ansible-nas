@@ -14,6 +14,7 @@ ansible_nas_hostname: plex-nas
 ansible_nas_timezone: America/Denver
 
 ## Enable some applications
+# Total container RAM: 14.125G
 # 1G
 gitea_enabled: true
 # 1G
@@ -26,7 +27,7 @@ nzbget_enabled: true
 plex_enabled: true
 # 1G
 portainer_enabled: true
-# 3.2G
+# 3.125G
 stats_enabled: true
 # 1G
 syncthing_enabled: true
@@ -48,12 +49,6 @@ ansible_nas_user: ryanj
 ansible_nas_email: ryan.jones@jonesclanonline.com
 ansible_nas_domain: jonesclanonline.com
 samba_server_string: "Plex NAS"
-
-# edit on machine
-openvpn_username: username
-openvpn_password: secret
-openvpn_provider: PrivadoVPN
-openvpn_config: "{{ openvpn_config_directory }}/lax-009.ovpn"
 
 # root paths
 samba_shares_root: /nas/data
@@ -196,15 +191,3 @@ samba_shares:
 nextcloud_sql_user: "nextcloud-user"
 nextcloud_sql_password: "nextcloud-pass"
 nextcloud_sql_root_password: "nextcloud-secret"
-
-
-###
-### Virtual Desktop
-###
-vd_data_directory: "{{ docker_home }}/virtual_desktop"
-vd_docker_image: "rattydave/docker-ubuntu-xrdp-mate-custom:20.04-tools"
-vd_users:
-  - username: "{{ ansible_nas_user }}"
-    password: "l3tme1n"
-    sudo: "Y"
-vd_rdp_port: 3389
