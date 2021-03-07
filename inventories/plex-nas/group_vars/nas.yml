@@ -52,25 +52,31 @@ samba_server_string: "Plex NAS"
 
 # root paths
 samba_shares_root: /nas/data
-# /nas/data/movies
+plex_root: "{{ samba_shares_root }}/plex"
+movies_root: "{{ plex_root }}/movies"
+tv_root: "{{ plex_root }}/tv"
+music_root: "{{ plex_root }}/music"
+photos_root: "{{ plex_root }}/photos"
+podcasts_root: "{{ plex_root }}/podcasts"
 # /nas/data/downloads
 # /nas/data/downloads/youtube/audio
 # /nas/data/downloads/youtube/video
 # /nas/data/downloads/youtube/subscriptions
-# /nas/data/tv
 # /nas/data/torrents
 # /nas/data/nzbget
-# /nas/data/music
-# /nas/data/podcasts
+# /nas/data/plex/tv
+# /nas/data/plex/movies
+# /nas/data/plex/photos
+# /nas/data/plex/music
+# /nas/data/plex/podcasts
 # /nas/data/books
 # /nas/data/audiobooks
 # /nas/data/comics
-# /nas/data/photos
-# /nas/data/roms
 # /nas/data/dump
 # /nas/data/games
 # /nas/data/pdf
 # /nas/data/misc
+
 nfs_shares_root: /nas/nfs
 docker_home: /nas/docker
 # /nas/docker
