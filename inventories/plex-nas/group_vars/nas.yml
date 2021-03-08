@@ -59,7 +59,7 @@ podcasts_root: "{{ plex_root }}/podcasts"
 # /nas/data/pdf
 # /nas/data/misc
 nfs_shares_root: /nas/nfs
-docker_home: /nas/docker
+docker_home: /var/lib/docker
 # /nas/docker
 # /nas/docker/youtubedlmaterial
 # /nas/docker/organizr
