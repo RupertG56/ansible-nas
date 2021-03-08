@@ -28,7 +28,7 @@ ansible_nas_email: ryan.jones@jonescslanonline.com
 ansible_nas_domain: jonesclanonline.com
 samba_server_string: "Plex NAS"
 
-docker_storage_driver: ZFS
+# docker_storage_driver: ZFS
 
 # root paths
 
