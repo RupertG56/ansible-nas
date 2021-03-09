@@ -14,9 +14,7 @@ ansible_nas_hostname: plex-nas
 ansible_nas_timezone: America/Denver
 
 ## Enable some applications
-# Total container RAM: 14.125G
-# 1G
-gitea_enabled: true
+# Total container RAM: 13.125G
 # 1G
 heimdall_enabled: true
 # 1G
