@@ -14,11 +14,11 @@ ansible_nas_hostname: plex-nas
 ansible_nas_timezone: America/Denver
 
 ## Enable some applications
-# Total container RAM: 13.125G
+# Total container RAM: 11.125G
 # 1G
 heimdall_enabled: true
 # 1G
-nextcloud_enabled: true
+nextcloud_enabled: false
 # 1G
 nzbget_enabled: true
 # 2G
@@ -30,17 +30,17 @@ stats_enabled: true
 # 1G
 syncthing_enabled: true
 # 1G
-traefik_enabled: true
+traefik_enabled: false
 # 1G
 watchtower_enabled: true
 # 1G
 youtubedlmaterial_enabled: true
 
 # Advanced Settings
-nextcloud_available_externally: "true"
-plex_available_externally: "true"
-gitea_available_externally: "true"
-heimdall_available_externally: "true"
+#nextcloud_available_externally: "true"
+#plex_available_externally: "true"
+#gitea_available_externally: "true"
+#heimdall_available_externally: "true"
 
 
 ansible_nas_user: ryanj
@@ -76,7 +76,7 @@ podcasts_root: "{{ plex_root }}/podcasts"
 # /nas/data/misc
 
 nfs_shares_root: /nas/nfs
-docker_home: /nas/docker
+docker_home: /mnt/docker
 # /nas/docker
 # /nas/docker/youtubedlmaterial
 # /nas/docker/organizr
@@ -190,8 +190,16 @@ samba_shares:
     browseable: yes
     path: "{{ samba_shares_root }}/roms"
 
+  - name: nzbget
+    comment: 'NZBGet'
+    guest_ok: yes
+    public: yes
+    writable: yes
+    browseable: yes
+    path: "{{ samba_shares_root }}/nzbget"
+
 
 # username / passwords
-nextcloud_sql_user: "nextcloud-user"
-nextcloud_sql_password: "nextcloud-pass"
-nextcloud_sql_root_password: "nextcloud-secret"
+#nextcloud_sql_user: "nextcloud-user"
+#nextcloud_sql_password: "nextcloud-pass"
+#nextcloud_sql_root_password: "nextcloud-secret"
